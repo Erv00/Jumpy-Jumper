@@ -5,21 +5,35 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import misc.Controlls;
 import objectBase.Handler;
 import objects.Wall;
 
 public class JumpyJumpStart extends Canvas implements Runnable{
-	
+	/**
+	 * Object handler.
+	 */
 	public static Handler h;
+	public static Controlls c = new Controlls();
 	private static final long serialVersionUID = 1L;
 	private Thread thread;
 	private boolean running = false;
+	private static final int WIDTH = 640, HEIGHT = WIDTH/12*9, CANVAS_HEIGHT = HEIGHT-30;
 	
 	public JumpyJumpStart() {
-		new Window(this);
+		new Window(WIDTH,HEIGHT,this,c);
 		h = new Handler();
-		Wall w = new Wall(10,10,20,20,Color.green);
-		h.AddObject(w);
+		Wall w1 = new Wall(0,420,WIDTH,20,Color.green);
+		Wall w2 = new Wall(50,230,50,70,Color.green);
+		Wall pl = new Wall(WIDTH/2,CANVAS_HEIGHT/2,20,20,Color.green);
+		//Wall k = new Wall(WIDTH+200,100,50,50,Color.GREEN);
+		w1.velX = -7;
+		w2.velX = -7;
+		//k.velX = -7;
+		//h.AddObject(k);
+		//h.AddObject(w1);
+		//h.AddObject(w2);
+		//h.AddObject(pl);
 	}
 	
 	public synchronized void start() {

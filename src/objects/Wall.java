@@ -9,7 +9,7 @@ public class Wall extends GameObject {
 
 	public Wall(int _x, int _y, int _width, int _height, Color _color) {
 		super(_x, _y, _width, _height, _color);
-		useGrav = true;
+		//useGrav = true;
 	}
 
 	@Override
@@ -17,14 +17,14 @@ public class Wall extends GameObject {
 		x += velX;
 		y += velY;
 		if(useGrav) {
-			y += mass;
+			velY += mass;
 		}
 	}
 
 	@Override
 	public void Render(Graphics g) {
 		g.setColor(color);
-		g.fillRect(x, y, width, width);
+		g.fillRect(x, y, width, height);
 	}
 
 }
