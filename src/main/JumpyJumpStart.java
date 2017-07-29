@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import misc.Controlls;
 import objectBase.Handler;
+import objects.Player;
 import objects.Wall;
 
 public class JumpyJumpStart extends Canvas implements Runnable{
@@ -20,12 +21,14 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 	private boolean running = false;
 	private static final int WIDTH = 640, HEIGHT = WIDTH/12*9, CANVAS_HEIGHT = HEIGHT-30;
 	
+	public static Player pl;
+	
 	public JumpyJumpStart() {
 		new Window(WIDTH,HEIGHT,this,c);
 		h = new Handler();
 		Wall w1 = new Wall(0,420,WIDTH,20,Color.green);
 		Wall w2 = new Wall(50,230,50,70,Color.green);
-		Wall pl = new Wall(WIDTH/2,CANVAS_HEIGHT/2,20,20,Color.green);
+		pl = new Player(WIDTH/2,CANVAS_HEIGHT/2,20,20,Color.green);
 		//Wall k = new Wall(WIDTH+200,100,50,50,Color.GREEN);
 		w1.velX = -7;
 		w2.velX = -7;
@@ -33,7 +36,7 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 		//h.AddObject(k);
 		//h.AddObject(w1);
 		//h.AddObject(w2);
-		//h.AddObject(pl);
+		h.AddObject(pl);
 	}
 	
 	public synchronized void start() {
@@ -58,6 +61,7 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
+		int ticks = 0;
 		while(running) {
 			long now = System.nanoTime();
 			delta += (now-lastTime)/ns;
@@ -65,6 +69,7 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 			while(delta >=1) {
 				tick();
 				delta--;
+				ticks++;
 			}
 			if(running) {
 				render();
@@ -74,6 +79,8 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println("FPS: " + frames);
+				System.out.println("Ticks: " + ticks);
+				ticks = 0;
 				frames = 0;
 			}
 		}

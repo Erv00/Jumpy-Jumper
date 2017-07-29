@@ -22,6 +22,10 @@ public abstract class GameObject {
 	 * The object's hitbox. Use {@link #GetRect()} to get it.
 	 */
 	private Rectangle hitbox;
+	/**
+	 * True when the Game Object was created with an image or sprite,otherwise false.
+	 */
+	protected boolean hasImage;
 	
 	/**
 	 * Creates a new Game Object with a solid color.
@@ -38,6 +42,7 @@ public abstract class GameObject {
 		height = _height;
 		color = _color;
 		hitbox = new Rectangle(x,y,width,height);
+		hasImage = false;
 	}
 	
 	/**
@@ -53,6 +58,7 @@ public abstract class GameObject {
 		width = _img.getWidth();
 		height = _img.getHeight();
 		hitbox = new Rectangle(x,y,width,height);
+		hasImage = true;
 	}
 	
 	/**
