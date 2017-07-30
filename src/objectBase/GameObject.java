@@ -19,10 +19,6 @@ public abstract class GameObject {
 	 */
 	public int mass = 1;
 	/**
-	 * The object's hitbox. Use {@link #GetRect()} to get it.
-	 */
-	private Rectangle hitbox;
-	/**
 	 * True when the Game Object was created with an image or sprite,otherwise false.
 	 */
 	protected boolean hasImage;
@@ -41,7 +37,6 @@ public abstract class GameObject {
 		width = _width;
 		height = _height;
 		color = _color;
-		hitbox = new Rectangle(x,y,width,height);
 		hasImage = false;
 	}
 	
@@ -57,7 +52,6 @@ public abstract class GameObject {
 		image = _img;
 		width = _img.getWidth();
 		height = _img.getHeight();
-		hitbox = new Rectangle(x,y,width,height);
 		hasImage = true;
 	}
 	
@@ -76,6 +70,6 @@ public abstract class GameObject {
 	 * @return	The objects hitbox
 	 */
 	public Rectangle GetRect() {
-		return hitbox;
+		return new Rectangle(x,y,width,height);
 	}
 }

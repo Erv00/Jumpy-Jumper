@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import misc.Physics;
 import objectBase.GameObject;
 
 public class Player extends GameObject {
@@ -22,12 +23,18 @@ public class Player extends GameObject {
 	public void Tick() {
 		x += velX;
 		y += velY;
+		if(Physics.IsStanding(GetRect()))
+			System.out.println("Standing");
 		if(useGrav) {
+			if( !Physics.IsStanding(GetRect())) {
 			velY += mass;
-			if(velY>0)
-				velY--;
+			//if(velY>0)
+			//	velY--;
 			if(velY<0)
 				velY++;
+			} else {
+				velY = 0;
+			}
 
 		}
 	}
@@ -43,9 +50,14 @@ public class Player extends GameObject {
 		
 	}
 	
+	/**
+	 * Validates the move and jumps.
+	 */
 	public void Jump() {
-		velY = -15;
-		System.err.println("JUMP!");
+		if(Physics.IsStanding(GetRect())) {
+			velY = -15;
+			System.err.println("JUMP!");
+		}
 	}
 
 }

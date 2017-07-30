@@ -7,7 +7,7 @@ public class Handler {
 	/**
 	 * List of Game Object to tick and render.
 	 */
-	private LinkedList<GameObject> Objects = new LinkedList<GameObject>();
+	public LinkedList<GameObject> Objects = new LinkedList<GameObject>();
 	
 	/**
 	 * Adds a Game Object to {@link #Objects}.
