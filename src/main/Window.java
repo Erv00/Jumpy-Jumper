@@ -23,7 +23,7 @@ public class Window extends Canvas{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.add(caller);
-		caller.addKeyListener(keyListener);
+		frame.addKeyListener(keyListener);
 		caller.start();
 	}
 }

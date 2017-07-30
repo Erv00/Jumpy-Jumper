@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import misc.Controlls;
+import misc.Objects;
 import objectBase.Handler;
 import objects.Player;
 import objects.Wall;
@@ -19,24 +20,14 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 	private Thread thread;
 	private boolean running = false;
-	private static final int WIDTH = 640, HEIGHT = WIDTH/12*9, CANVAS_HEIGHT = HEIGHT-30;
+	public static final int WIDTH = 640, HEIGHT = WIDTH/12*9, CANVAS_HEIGHT = HEIGHT-30;
 	
 	public static Player pl;
 	
 	public JumpyJumpStart() {
 		new Window(WIDTH,HEIGHT,this,c);
 		h = new Handler();
-		Wall w1 = new Wall(0,CANVAS_HEIGHT/2+40,WIDTH,20,Color.green);
-		Wall w2 = new Wall(50,230,50,70,Color.green);
-		pl = new Player(WIDTH/2,CANVAS_HEIGHT/2,20,20,Color.green);
-		//Wall k = new Wall(WIDTH+200,100,50,50,Color.GREEN);
-		w1.velX = -7;
-		w2.velX = -7;
-		//k.velX = -7;
-		//h.AddObject(k);
-		h.AddObject(w1);
-		//h.AddObject(w2);
-		h.AddObject(pl);
+		Objects.CreateObject(WIDTH, CANVAS_HEIGHT, h);
 	}
 	
 	public synchronized void start() {
