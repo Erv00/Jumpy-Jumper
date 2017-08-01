@@ -3,6 +3,7 @@ package misc;
 import java.awt.Rectangle;
 
 import main.JumpyJumpStart;
+import objectBase.GameObject;
 
 public class Physics {
 	/**
@@ -10,15 +11,14 @@ public class Physics {
 	 * @param hitbox	The hitbox to check against.
 	 * @return			True if it is standing on something.
 	 */
-	public static boolean IsStanding(Rectangle hitbox) {
+	public static void OnCollision(GameObject hitbox) {
 		for(int i=0;i<JumpyJumpStart.h.Objects.size();i++) {
 			Rectangle hitbox2 = JumpyJumpStart.h.Objects.get(i).GetRect();
-			if(hitbox.intersects(hitbox2)) {
-				if(!IsSame(hitbox,hitbox2))
-					return true;
+			if(hitbox.GetRect().intersects(hitbox2)) {
+				if(!IsSame(hitbox.GetRect(),hitbox2))
+					JumpyJumpStart.h.Objects.get(i).OnCollision(hitbox);
 			}
 		}
-		return false;
 	}
 	
 	/**

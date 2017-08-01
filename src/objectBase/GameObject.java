@@ -64,6 +64,11 @@ public abstract class GameObject {
 	 * @param g	The Graphics object to draw with.
 	 */
 	public abstract void Render(Graphics g);
+	/**
+	 * This method is called whenever a player enters this object hitbox.
+	 * @param g	The colliding object.
+	 */
+	public abstract void OnCollision(GameObject g);
 	
 	/**
 	 * Gets the objects hitbox. The hitbox is defined when the constructor is called.

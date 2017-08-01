@@ -26,10 +26,7 @@ public class Player extends GameObject {
 	public void Tick() {
 		x += velX;
 		y += velY;
-		if(Physics.IsStanding(GetRect())) {
-			System.out.println("Standing");
-			DieNextFrame = true;
-		}
+		Physics.OnCollision(this);
 		if(useGrav) {
 			velY += mass;
 			//if(velY>0)
@@ -66,5 +63,8 @@ public class Player extends GameObject {
 			velY = -15;
 			System.err.println("JUMP!");
 	}
+
+	@Override
+	public void OnCollision(GameObject g) {}
 
 }

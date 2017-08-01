@@ -9,7 +9,6 @@ import misc.Controlls;
 import misc.Objects;
 import objectBase.Handler;
 import objects.Player;
-import objects.Wall;
 
 public class JumpyJumpStart extends Canvas implements Runnable{
 	/**
@@ -21,6 +20,7 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 	private Thread thread;
 	private boolean running = false;
 	public static final int WIDTH = 640, HEIGHT = WIDTH/12*9, CANVAS_HEIGHT = HEIGHT-30;
+	public static int score = 0;
 	
 	public static Player pl;
 	
@@ -89,7 +89,14 @@ public class JumpyJumpStart extends Canvas implements Runnable{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 640, 640/12*9);
 		
-		h.Render(g);
+		try {
+			h.Render(g);
+		}catch(NullPointerException e) {
+			stop();
+			main(null);
+		}
+		g.setColor(Color.green);
+		g.drawString(Integer.toString(score), 10, 10);
 		
 		g.dispose();
 		bs.show();
